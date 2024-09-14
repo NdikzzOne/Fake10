@@ -8,15 +8,8 @@ if (!mime) throw 'Kirim/Reply Gambar dengan caption .remini'
 m.reply(wait)
 let media = await q.download()
 let url = await fileIO(media)
-let hasil = `${webapi}api/ai/remini?url=${url}&apikey=${apichan}`
-const response = await fetch(hasil);
-    const buffer = await response.buffer();
-//let hasil = `https://tesapi.zxcoderid.xyz/api/ai/remini?url=${url}&apikey=${apichan}`
-/*if (!hasil) {
-    hasil = `https://api.lolhuman.xyz/api/upscale?apikey=${apichan}&img=${url}`
-}*/
-   fs.writeFileSync('./tmp/remini.webp', buffer);
-            conn.sendFile(m.chat, './tmp/remini.webp', 'remini.jpg', wm, m)
+let hasil = await getBuffer(`${webapi}api/ai/remini?url=${url}&apikey=${apichan}`)
+            conn.sendFile(m.chat, hasil, 'remini.jpg', wm, m)
 //conn.sendFile(m.chat, hasil, '', wm, m)
 	
 }
@@ -26,3 +19,22 @@ handler.command = /^(remini|hd|hdr|upscale)$/i
 handler.limit = true
 
 module.exports = handler
+
+async function getBuffer(url, options) {
+        try {
+                options ? options : {}
+                const res = await axios({
+                        method: "get",
+                        url,
+                        headers: {
+                                'DNT': 1,
+                                'Upgrade-Insecure-Request': 1
+                        },
+                        ...options,
+                        responseType: 'arraybuffer'
+                })
+                return res.data
+        } catch (e) {
+                console.log(`Error : ${e}`)
+        }
+}
