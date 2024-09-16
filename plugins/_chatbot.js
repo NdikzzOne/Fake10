@@ -1,21 +1,33 @@
-const fetch = require('node-fetch')
-let handler = m => m
+const fetch = require('node-fetch');
+let handler = m => m;
 
 handler.before = async function(m, { conn }) {
-if (m.isBaileys && m.fromMe)
-        return !0
-    if (!m.isGroup) return !1
-    let chat = global.db.data.chats[m.chat]
+    // Cek jika pesan dari bot sendiri (fromMe), lewati
+    if (m.fromMe) return !0;
     
-      if (!chat.simi)
-        return !0
-        let res = await fetch(`https://widipe.com/simi?text=${encodeURIComponent(m.text)}`)
-        if (!res.ok) throw 'maaf simi lagi sibuk'
-        let json = await res.json()
-        if (json.result == "Request failed!") await m.reply("gapaham cok :'v")
- //      await m.reply(`${json.success}`)
-   await m.reply(`${json.result}`)
+    // Cek jika bukan pesan dari grup, lewati
+    if (!m.isGroup) return !1;
     
+    let chat = global.db.data.chats[m.chat];
+    
+    // Cek jika fitur simi tidak diaktifkan di grup, lewati
+    if (!chat.simi) return !0;
+    
+    try {
+        // Fetch ke API Simi
+        let res = await fetch(`https://widipe.com/simi?text=${encodeURIComponent(m.text)}`);
+        if (!res.ok) throw 'Maaf, simi lagi sibuk';
+        
+        let json = await res.json();
+        if (json.result == "Request failed!") {
+            await m.reply("Gapaham cok :'v");
+        } else {
+            await m.reply(`${json.result}`);
+        }
+    } catch (e) {
+        // Menangani error jika terjadi
+        await m.reply(e.toString());
+    }
 }
 
-module.exports = handler
+module.exports = handler;
