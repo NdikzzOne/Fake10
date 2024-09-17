@@ -80,7 +80,7 @@ m.reply(require('fs').readFileSync('./database/' + 'freepanel', 'utf-8'))
 }
             break
     case 'sendto':{
-    if(!args[0]) return m.reply('teksnya')
+    if(!text) return m.reply('teksnya')
         let [nomor,spam1] = text.split('#')
         conn.sendMessage(nomor+'@s.whatsapp.net', {text: spam1 })
         m.reply('Sukses Terkirim')
