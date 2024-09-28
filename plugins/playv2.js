@@ -168,7 +168,7 @@ m.reply(`––––––『 ⎔ 𝙇𝙤𝙖𝙙𝙞𝙣𝙜... 』–––�
 
 handler.help = ['play'].map(v => v + ' <url>')
 handler.tags = ['downloader']
-handler.command = /^(play)$/i
+handler.command = /^(playv2)$/i
 
 handler.limit = 5
 
