@@ -12,12 +12,13 @@ let handler = async (m, {
     command
 }) => {
     if (!(args[0].includes('http://') || args[0].includes('https://'))) return m.reply(`url invalid, please input a valid url. Try with add http:// or https://`)
-    if (!args[0].includes('youtu.be')) return m.reply(`Invalid Youtuber URL.`)
+    if (!args[0].includes('youtu.be') && !args[0].includes('youtube.com')) return m.reply(`Invalid Youtuber URL.`)
  //   if (!args[0]) throw `*• Example:* ${usedPrefix + command} https://youtu.be/xxxx`
     m.reply(wait)
     try {
         let ahh = await getBuffer(`${webapi}api/canvas/YoutubeThumb?url=${args[0]}&apikey=${apichan}`)
         let rasat = await(await fetch(`${webapi}api/downloader/youtube-audio?url=${args[0]}&apikey=${apichan}`)).json()
+        if(!rasat.data) return m.reply(rasat.message)
         let cap = `
 *${cmenut} YOUTUBE ${cmenuh}*
 
@@ -57,14 +58,14 @@ await conn.sendFile(m.chat, ahh, 'image/jpg', cap, m);
         console.log(e)
         try {
 
-            let yt = await youtubedlv2(args[0]).catch(async _ => await youtubedl(args[0]))
-            let link = await yt.audio["128kbps"].download()
+            let dat = await(await fetch(`https://widipe.com/download/ytdl?url=${args[0]}`)).json()
+            let yt = dat.result
             let ytl = "https://youtube.com/watch?v="
             let dls = "Download audio succes ( V2 )"
             let ytthumb = await (await conn.getFile(yt.thumbnail)).data
             let doc = {
                 audio: {
-                    url: link
+                    url: yt.mp3
                 },
                 mimetype: "audio/mp4",
                 fileName: yt.title,

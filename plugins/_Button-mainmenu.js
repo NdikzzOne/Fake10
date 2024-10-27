@@ -7,8 +7,10 @@ const platform = require('process')
 const os = require('os')
 let levelling = require('../lib/levelling')
 let ucpn = `${ucapan()}`
-
-let tags = {
+let handler = async (m, { conn, args, usedPrefix: _p }) => {
+    if(!args[0]) return m.reply('Command nya?')
+  let selectionsButton = args[0];
+let list = {
   'store': '𝗠𝗘𝗡𝗨 𝗦𝗧𝗢𝗥𝗘',
   'rpgabsen': '𝗥𝗣𝗚 𝗔𝗕𝗦𝗘𝗡',
   'rpg': '𝗠𝗘𝗡𝗨 𝗥𝗣𝗚',
@@ -36,51 +38,38 @@ let tags = {
   'owner': '𝗠𝗲𝗻𝘂 𝗢𝘄𝗻𝗲𝗿',
   'advanced': '𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱',
   'info': '𝗜𝗻𝗳𝗼',
-  'audio': '𝗠𝗲𝗻𝘂 𝗔𝘂𝗱𝗶𝗼',
+  'audio': '𝗠𝗲𝗻𝘂 𝗔𝗨𝗗𝗜𝗢',
   'maker': '𝗠𝗲𝗻𝘂 𝗠𝗮𝗸𝗲𝗿',
   'nocategory': '𝗡𝗼𝗰𝗮𝘁𝗲𝗴𝗼𝗿𝘆',
+};
+
+let tags = {};
+if (list[selectionsButton]) {
+  tags[selectionsButton] = list[selectionsButton];
+} else {
+  tags['default'] = 'Tidak ditemukan';
 }
+
+console.log(tags);
 const defaultMenu = {
   before: `
 ◈ ━━━━━ *INFO BOTZ* ━━━━━ ◈
 
 *${namabot}* ᴀᴅᴀʟᴀʜ ᴘʀᴏɢʀᴀᴍ ʙᴏᴛ ᴡʜᴀᴛꜱᴀᴘᴘ ʏᴀɴɢ ꜱɪᴀᴘ ᴍᴇᴍʙᴀɴᴛᴜ ᴀɴᴅᴀ ᴅᴀʟᴀᴍ ᴍᴇʟᴀᴋᴜᴋᴀɴ ʙᴇʀʙᴀɢᴀɪ ᴛɪɴᴅᴀᴋᴀɴ, ᴍᴇɴᴄᴀʀɪ ᴅᴀᴛᴀ ᴀᴛᴀᴜ ɪɴꜰᴏʀᴍᴀꜱɪ ᴍᴇʟᴀʟᴜɪ ᴡʜᴀᴛꜱᴀᴘᴘ.
 ─────────────
-
-⌬〡 _ʜᴀʟᴏ_ *%name*
-⌬〡 ʟᴇᴠᴇʟ : *%level* 
-⌬〡 ᴛᴏᴛᴀʟ ᴜꜱᴇʀ : %totalreg
-⌬〡 ᴛᴏᴛᴀʟ ғɪᴛᴜʀ : %totalf
-⌬〡 ᴜᴘᴛɪᴍᴇ : %muptime 
-⌬〡 ʟɪʙʀᴀʀʏ : *Baileys*
-⌬〡 ᴛʏᴘᴇ : *NodeJS*
-⌬〡 ᴘʟᴀᴛғᴏʀᴍ : *%platform*
-⌬〡 ᴠᴇʀsɪᴏɴ : *%version*
-⌬〡 ʜᴏᴍᴇᴘᴀɢᴇ : *%npmname*
-
-*pesan* jangan lupa sholat
-─────────────
-ʜᴀʟᴏ *%name* ᴀᴅᴀ ʏᴀɴɢ ʙɪꜱᴀ ꜱᴀʏᴀ ʙᴀɴᴛᴜ?
-ᴋᴇᴛɪᴋ *.ᴏᴡɴᴇʀ* ᴜɴᴛᴜᴋ ᴍᴇɴʏᴇᴡᴀ ʙᴏᴛ ᴀᴛᴀᴜ ᴋᴇᴘᴇʀʟᴜᴀɴ ʟᴀɪɴɴʏᴀ, ᴛᴇʀɪᴍᴀ ᴋᴀꜱɪʜ
-─────────────
-® ${htjava} DILARANG SPAM BOT
-® ${htjava} GUNAKAN BOT SEBAIK MUNGKIN
-® ${htjava} OWNER ADALAH DEWA,
-
 Ⓛ = Limit / Diamonds
 Ⓟ = Premium 
 -----  -----  -----  -----  -----
 		𝐃𝐚𝐟𝐭𝐚𝐫 𝐌𝐞𝐧𝐮 𝐁𝐨𝐭
   %readmore
 `.trimStart(),
-  header: '> `%category` 〢',
+  header: '`%category` 〢',
   body: '┇ ⫹⫺ %cmd %isPremium %islimit',
   footer: '└ ─ ─ ─ ─ ─〢',
   after: `Copyright : @WhatsApp
 ${wm}
 `,
 }
-let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
     let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
     let { age, exp, limit, level, role, registered, money} = global.db.data.users[m.sender]
@@ -156,10 +145,13 @@ const zxcoder = [
         enabled: !plugin.disabled,
       }
     })
-    for (let plugin of help)
-      if (plugin && 'tags' in plugin)
-        for (let tag of plugin.tags)
-          if (!(tag in tags) && tag) tags[tag] = tag
+    let groups = {}
+    for (let tag in tags) {
+      groups[tag] = []
+      for (let plugin of help)
+        if (plugin.tags && plugin.tags.includes(tag))
+          if (plugin.help) groups[tag].push(plugin)
+          }
 
   let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
   const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/avatar_contact.png')
@@ -241,15 +233,13 @@ mediaType: 1,
 renderLargerThumbnail: true,
 mentionedJid: [m.sender]
 }}}, { quoted: m })
-  conn.sendFile(m.chat, './mp3/menu.mp3', '', null, m, true, { type: "audioMessage", ptt: true, fileLength: 8873})
+ // conn.sendFile(m.chat, './mp3/menu.mp3', '', null, m, true, { type: "audioMessage", ptt: true, fileLength: 8873})
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
   }
 }
-handler.help = ['menu']
-handler.tags = ['main']
-handler.command = /^(allmenu|menuall|help|\?)$/i
+handler.command = /^(ichanbutton)$/i
 handler.register = true
 handler.exp = 3
 module.exports = handler
