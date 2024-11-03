@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 
-let handler = async(m, { conn, text, usedPrefix, command }) => {
+let handler = async(m, { conn, text, args, usedPrefix, command }) => {
     if (!args[0]) throw `Example: ${usedPrefix + command} kemaspakez`
 if (text.includes("www.instagram.com")) {
   m.reply(`harus berupa username akun instagram!! ${usedPrefix + command} _fake.story46`);
