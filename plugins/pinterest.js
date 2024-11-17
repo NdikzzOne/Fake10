@@ -2,7 +2,7 @@ let scrap = require("../lib/scraper_pinterest")
 let fetch = require('node-fetch')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    const { generateWAMessageFromContent, generateWAMessageContent, proto, prepareWAMessageMedia } = require("@adiwajshing/baileys") 
+  /*  const { generateWAMessageFromContent, generateWAMessageContent, proto, prepareWAMessageMedia } = require("@adiwajshing/baileys") 
     let id = `${Math.floor(Math.random() * 5)}`
 	  if (!text) throw `Contoh: ${usedPrefix + command} Anime BlueArchive`
 async function createImage(url) {
@@ -59,9 +59,9 @@ async function createImage(url) {
     }, {});
 
     await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
+    */
     
     
-    /*
     let id = `${Math.floor(Math.random() * 5)}`
 	  if (!text) throw `Contoh: ${usedPrefix + command} cewe cantik`
       try {
@@ -73,7 +73,7 @@ let cita = wes.data[Math.floor(Math.random() * was.length)]
       } catch (e) {
           m.reply('WEB PUSAT ERORR! TIDAK BISA DI GANGGU GUGAT HARAP BERSABAR\nNTAR BISA KEMBALI')
       }
-	*/
+	
 }
     
 handler.help = ['pinterest <text>']

@@ -1,29 +1,29 @@
-let fetch = require('node-fetch')
-let { fileIO, api} = require('../lib/uploadFile.js')
-let fs = require('fs')
+const fetch = require('node-fetch')
+const { fileIO, api, UploadFiles} = require('../lib/uploadFile')
+const sleep = require('../functions.js')
 let handler = async (m, { conn, usedPrefix, command, text }) => {
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let name = await conn.getName(who)
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
-if (!mime) throw 'Kirim/Reply Gambar dengan caption .remini'
-m.reply(wait)
+if (!mime) throw `Kirim/Reply Gambar dengan caption ${command}`
+m.reply(`Proses`)
 let media = await q.download()
 let url = await fileIO(media)
-let reminiv1 = await downloadAsBuffer(`${webapi}api/ai/remini?url=${url}&apikey=${apichan}`)
-if(reminiv1.length === 0){
-    let reminiv2 = await downloadAsBuffer(`${webapi}api/ai/upscale?url=${url}&apikey=${apichan}`)
-            conn.sendFile(m.chat, reminiv2, 'remini.jpg', '👌 Done Menggunakan ReminiV2', m)
-}else{
- conn.sendFile(m.chat, reminiv1, 'remini.jpg', '👌 Done Menggunakan ReminiV1', m)
-//conn.sendFile(m.chat, hasil, '', wm, m)
-	
-}
-}
-handler.help = ['remini']
-handler.tags = ['maker']
-handler.command = /^(remini|hd|hdr|upscale)$/i
-handler.limit = true
+let hasil = `${webapi}api/ai/jadianime?url=${url}&apikey=${apichan}`
+const buffer = await downloadAsBuffer(hasil);
+//setTimeout(async () =>{
+    await conn.sendFile(m.chat, buffer, '', `${global.wm}`, m)
+//}, 45000)
 
+}
+
+handler.help = ['jadianime']
+handler.tags = ['fun']
+handler.command = /^(jadianime)$/i
+handler.premium = true
 module.exports = handler
+
 async function downloadAsBuffer(url) {
     const https = require("https");
     return new Promise((resolve, reject) => {
@@ -35,6 +35,7 @@ async function downloadAsBuffer(url) {
         });
     });
 }
+
 async function getBuffer(url, options) {
         try {
                 options ? options : {}

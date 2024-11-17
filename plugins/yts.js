@@ -1,7 +1,7 @@
 let yts = require('yt-search')
 let handler = async (m, { conn, text }) => {
     
-    if(!text) throw "Contoh penggunaan: .yts can i be him"
+ /*   if(!text) throw "Contoh penggunaan: .yts can i be him"
 let yts = require('yt-search')
 let { generateWAMessageFromContent, prepareWAMessageMedia, proto } = require("@adiwajshing/baileys") 
 let anu = (await yts(text)).all
@@ -87,9 +87,9 @@ let msg = generateWAMessageFromContent(m.chat, {
 
 await conn.relayMessage(msg.key.remoteJid, msg.message, {
   messageId: msg.key.id
-})
+})*/
     
- /*if (!text) throw 'Cari apa?'
+ if (!text) throw 'Cari apa?'
   let results = await yts(text)
   let teks = results.all.map(v => {
     switch (v.type) {
@@ -106,7 +106,7 @@ ${v.videoCount} video
 `.trim()
     }
   }).filter(v => v).join('\n꒦ ͝ ꒷ ͝ ꒦ ͝ ꒷ ͝ ꒦ ͝ ꒷ ͝ ꒦ ͝ ꒷ ͝ ꒦ ͝ ꒷ ͝ ꒦ ͝ ꒷ ͝ ꒦ ͝ ꒷꒦\n')
-  m.reply(teks)*/
+  m.reply(teks)
 }
 handler.help = ['', 'earch'].map(v => 'yts' + v + ' <pencarian>')
 handler.tags = ['tools']

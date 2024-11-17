@@ -90,7 +90,10 @@ ${registered ? '🎨 • *Age:* ' + age : ''}
 🗓️ 𝗗𝗮𝘁𝗲: ${week} ${date}
 ⏰ 𝗧 𝗜 𝗠 𝗘 : ${time}
 
-${str}
+/allmenu (untuk Menampilkan Semua Menu Bot)
+/sewabot (Untuk Detail Harga SewaBot)
+/daftar (untuk mendaftarkan Akun dalam Database)
+/owner (Untuk Kepentingan Jika ada Kendala)
 
 ==========================
 		*BOT ADS*
@@ -119,7 +122,7 @@ Mau pake perintah bot? Yuk, join dulu di komunitas kami agar mendapatkan seputar
 			}
 			}, {quoted: m})*/
   
-  
+  /*
   // ------------- BETTON WANGSAF ----------------------
   let sections = [
 { title: `${htki} ＤＡＦＴＡＲ ＦＩＴＵＲ ＰＡＤＡ ＢＯＴ ${htka}`,
@@ -208,8 +211,8 @@ let msg = generateWAMessageFromContent(m.chat, {
   conn.sendPresenceUpdate("recording", m.chat) 
     await conn.relayMessage(msg.key.remoteJid, msg.message, {
   messageId: msg.key.id
-})
-    /*conn.sendMessage(m.chat, {
+})*/
+    conn.sendMessage(m.chat, {
 video: vigif,
 mimetype: 'video/mp4',
 fileLength: 1000000,
@@ -226,7 +229,7 @@ sourceUrl: sgc,
 mediaType: 1,
 renderLargerThumbnail: true,
 mentionedJid: [m.sender]
-}}}, { quoted: m })*/
+}}}, { quoted: m })
 }
 handler.help = ['menu', 'help']
 handler.tags = ['main']

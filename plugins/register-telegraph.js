@@ -25,7 +25,7 @@ let handler = async (m, { conn, text, args, usedPrefix }) => {
       month: 'long',
       year: 'numeric'
     });
-    
+    /*
     // Cek apakah input memiliki '.done' di akhir, lalu hilangkan '.done' untuk validasi
     if (text.endsWith('.done')) {
         text = text.replace('.done', '').trim(); // Hapus '.done' untuk validasi nama.umur
@@ -54,7 +54,7 @@ let handler = async (m, { conn, text, args, usedPrefix }) => {
             }
         });
         return;
-    }
+    }*/
  //   let [ats, umr, anny] = text.split('.')
     
     if (user.registered === true) throw `Anda sudah terdaftar\nMau daftar ulang? ${usedPrefix}unreg <SN|SERIAL NUMBER>`;
@@ -78,7 +78,28 @@ let handler = async (m, { conn, text, args, usedPrefix }) => {
     if (new Date() - global.db.data.users[m.sender].reglast > 86400000) {
         
         let pp = await conn.profilePictureUrl(who, 'image').catch(_ => "https://telegra.ph/file/bd49b3a2274bde2fb3c3a.jpg");
-
+        
+        user.name = name;
+        user.age = age;
+        user.reglast = new Date() * 1;
+        user.registered = true;
+        let limitnye = global.db.data.users[m.sender].limit += 20;
+        let sn = createHash('md5').update(m.sender).digest('hex');
+        // Pendaftaran Berhasil
+        await conn.sendMessage(m.chat, {
+            text: `╭─「 Status 」\n│◉ Status: ☑️ Sukses Terdaftar\n│◉ Nama: ${name}\n│◉ Umur: ${age} tahun\n╰────────────\n◉ SN: ${sn}\n\nJangan lupa baca rules ya kak...\nData user yang tersimpan dijamin aman tanpa tersebar 📁\n*.allmenu [Menampilkan Semua Fitur]*\n\n⻝ Date: ${week}, ${date}\n⻝ Time: ${wktuwib}`,
+            contextInfo: {
+                externalAdReply: {
+                    title: "✅ Sukses Daftar",
+                    body: 'Sekarang Kamu Bisa Menggunakan Fiturku',
+                    thumbnailUrl: pickRandom(waifu),
+                    sourceUrl: "",
+                    mediaType: 1,
+                    renderLargerThumbnail: true
+                }
+            }
+        });
+/*
         // --------------------- REGISTER BUTTON -------------------------
         let capt = `Halo kak ${m.pushName}😉👋, Silahkan memilih\n🧮 Layanan Untuk Metode Verifikasi di bawah ya, pilih Lewat Gmail Atau Langsung`;
         
@@ -141,7 +162,7 @@ let handler = async (m, { conn, text, args, usedPrefix }) => {
             global.registers[m.sender].umur = age;
             await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
             return;
-        }
+        }*/
     } else {
         m.reply(`Kamu sudah *daftar*.\nMohon tunggu ${waktuh} untuk bisa *daftar* kembali.`);
     }

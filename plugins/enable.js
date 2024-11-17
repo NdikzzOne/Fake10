@@ -35,6 +35,7 @@ Contoh:
 ${usedPrefix}enable welcome
 ${usedPrefix}disable welcome
 `
+  /*  
     let sections = [
 { title: `${htki} 𝙿𝙴𝙽𝙶𝙰𝚃𝚄𝚁𝙰𝙽 𝙱𝙾𝚃 ${htka}`,
 rows: [
@@ -111,7 +112,7 @@ let msg = generateWAMessageFromContent(m.chat, {
         })
     }
   }
-}, {})
+}, {}) */
     
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
@@ -375,10 +376,10 @@ case 'chatbot':
       chat.antiSpam = isEnable
       break
     default:
-      if (!/[01]/.test(command)) return await conn.relayMessage(msg.key.remoteJid, msg.message, {
+     /* if (!/[01]/.test(command)) return await conn.relayMessage(msg.key.remoteJid, msg.message, {
   messageId: msg.key.id
-})
-/*conn.relayMessage(m.chat,  {
+}) */
+conn.relayMessage(m.chat,  {
     requestPaymentMessage: {
       currencyCodeIso4217: 'IDR',
       amount1000: 25000000,
@@ -389,7 +390,7 @@ case 'chatbot':
       contextInfo: {
       externalAdReply: {
       showAdAttribution: false
-      }}}}}}, {})*/
+      }}}}}}, {})
           throw false
   }
   let status = `╭───═[ *OPTIONS* ]
