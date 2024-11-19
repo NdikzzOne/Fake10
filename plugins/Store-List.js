@@ -148,6 +148,6 @@ await conn.relayMessage(msg.key.remoteJid, msg.message, {
 handler.help = ["liststore"]
 handler.tags = ["store"]
 handler.command = /^list(store)?$/i
-handler.group = true*/
+handler.group = true
 
-module.exports = handler
+module.exports = handler*/
