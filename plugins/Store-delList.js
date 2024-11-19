@@ -9,7 +9,7 @@
  * 
  */
 
-/*let handler = async (m, { conn, text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
 	if (!text) throw `Uhm.. mana yg mau di hapus?\nContoh:\n*${usedPrefix + command} Key*`;
 	let chat = global.db.data.chats[m.chat]
 	if (!('store' in chat)) chat.store = []
@@ -32,8 +32,8 @@
 	} else {
 		throw `Maaf, *${text}* tidak ditemukan di list!\nketik *${usedPrefix}liststore* untuk melihat list nya.`;
 	}
-}*/
- const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = require("@adiwajshing/baileys") 
+}
+ /*const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = require("@adiwajshing/baileys") 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let store = global.db.data.chats[m.chat].store;
 	if (!('store' in db.data.chats[m.chat])) store = []
@@ -152,4 +152,4 @@ handler.tags = ["store"]
 handler.command = /^dellist$/i
 handler.group = true
 handler.admin = true
-module.exports = handler
+module.exports = handler*/
