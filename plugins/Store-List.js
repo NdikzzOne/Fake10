@@ -9,7 +9,7 @@
  * 
  */
 
-/**let handler = async (m, { conn, usedPrefix }) => {
+let handler = async (m, { conn, usedPrefix }) => {
 	let store = global.db.data.chats[m.chat].store;
 	if (!('store' in db.data.chats[m.chat])) store = []
 	if (!store[0]) throw `Belum ada list store di grup ini.\nuntuk menambahkan ketik *${usedPrefix}addlist*`;
@@ -36,10 +36,10 @@ handler.tags = ["store"]
 handler.command = /^list(store)?$/i
 handler.group = true
 
-module.exports = handler**/
+module.exports = handler
 
 
- const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = require("@adiwajshing/baileys") 
+ /*const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = require("@adiwajshing/baileys") 
  let handler = async (m, { conn, usedPrefix }) => {
 	let store = global.db.data.chats[m.chat].store;
 	if (!('store' in db.data.chats[m.chat])) store = []
@@ -148,6 +148,6 @@ await conn.relayMessage(msg.key.remoteJid, msg.message, {
 handler.help = ["liststore"]
 handler.tags = ["store"]
 handler.command = /^list(store)?$/i
-handler.group = true
+handler.group = true*/
 
 module.exports = handler
