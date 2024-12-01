@@ -9,10 +9,11 @@ m.reply(wait)
 let media = await q.download()
 let url = await fileIO(media)
 let reminiv1 = await downloadAsBuffer(`${webapi}api/ai/remini?url=${url}&apikey=${apichan}`)
-if(reminiv1.length === 0){
+if(reminiv1.length === 127){
     let reminiv2 = await downloadAsBuffer(`${webapi}api/ai/upscale?url=${url}&apikey=${apichan}`)
             conn.sendFile(m.chat, reminiv2, 'remini.jpg', '👌 Done Menggunakan ReminiV2', m)
 }else{
+//console.log(reminiv1.length);
  conn.sendFile(m.chat, reminiv1, 'remini.jpg', '👌 Done Menggunakan ReminiV1', m)
 //conn.sendFile(m.chat, hasil, '', wm, m)
 	

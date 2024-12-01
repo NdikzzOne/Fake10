@@ -71,6 +71,7 @@ let wes = await res.json()
 let cita = wes.data[Math.floor(Math.random() * was.length)]
     conn.sendFile(m.chat, cita, null, "*PINTEREST*\n\npencarian dari: " + text, m)
       } catch (e) {
+          console.log(e)
           m.reply('WEB PUSAT ERORR! TIDAK BISA DI GANGGU GUGAT HARAP BERSABAR\nNTAR BISA KEMBALI')
       }
 	

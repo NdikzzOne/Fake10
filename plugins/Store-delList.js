@@ -33,6 +33,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 		throw `Maaf, *${text}* tidak ditemukan di list!\nketik *${usedPrefix}liststore* untuk melihat list nya.`;
 	}
 }
+handler.help = ["dellist"]
+handler.tags = ["store"]
+handler.command = /^dellist$/i
+handler.group = true
+handler.admin = true
+module.exports = handler
  /*const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = require("@adiwajshing/baileys") 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let store = global.db.data.chats[m.chat].store;
