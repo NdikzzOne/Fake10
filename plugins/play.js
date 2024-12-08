@@ -6,12 +6,6 @@ const yts = require('yt-search');
 const { fetchJson, sleep } = require("../functions.js");
 const { youtubedl, youtubedlv2 } = require('../scrape/dl-ytplay');
 
-// Inisialisasi YouTube Data API
-const youtube = google.youtube({
-    version: 'v3',
-    auth: 'AIzaSyA6rcAS8Nu5NK3Oqxk2biiWVjT0TMfmPwk' // Ganti dengan kunci API baru Anda
-});
-
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     if (!args || !args[0]) throw `Contoh:\n ${usedPrefix}${command} nama lagu`;
 
@@ -19,25 +13,14 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     await m.reply("⏳ Sedang Mencari...");
 
     try {
-        // Pencarian menggunakan YouTube Data API
-        let searchResponse = await youtube.search.list({
-            part: 'snippet',
-            q: text,
-            type: 'video',
-            maxResults: 1, // Mendapatkan hasil teratas
-            order: 'relevance' // Mengurutkan berdasarkan relevansi
-        });
-
-        if (!searchResponse.data.items || searchResponse.data.items.length === 0) {
-            throw new Error('Tidak ada hasil yang ditemukan.');
-        }
-
-        let video = searchResponse.data.items[0];
-        let videoId = video.id.videoId;
-        let title = video.snippet.title;
-        let channel = video.snippet.channelTitle;
-        let publishedAt = video.snippet.publishedAt;
-        let thumbnail = video.snippet.thumbnails.high.url;
+        let search = await yts(text)
+        let res = search.videos;
+        let video = res[Math.floor(Math.random() * res.length)]
+        let videoId = video.videoId;
+        let title = video.title;
+        let channel = video.author.name;
+        let publishedAt = video.ago;
+        let thumbnail = video.thumbnail;
         let videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
         // Mengirim informasi video
@@ -47,7 +30,7 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 ───────────
 ┊☃︎ *Judul:* ${title}
 ┊☃︎ *Channel:* ${channel}
-┊☃︎ *Upload:* ${new Date(publishedAt).toLocaleDateString()}
+┊☃︎ *Upload:* ${publishedAt}
 ───────────
 ┊☃︎ Kirim .tomp3 untuk mengubah video menjadi mp3
 ┊☃︎ Kirim .tovn untuk mengubah video menjadi VN
