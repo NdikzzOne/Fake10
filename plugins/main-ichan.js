@@ -125,7 +125,7 @@ const path = require('path');
  const { execSync } = require('child_process');
 async function checkForUpdate() {
     // URL raw JSON yang akan dicek
-const jsonUrl = 'https://raw.githubusercontent.com/IchanZX1/ChanZX/master/public/UpdateSC.json';
+const jsonUrl = 'https://raw.githubusercontent.com/NdikzOne/Update/refs/heads/main/updatesc.js';
 // Direktori lokal yang akan diperbarui
 const repoDir = '/home/container';
 // Repositori git yang akan digunakan untuk update

@@ -12,19 +12,21 @@ let res = await fetch(`https://api.neoxr.eu/api/toanime?image=${url}&apikey=dZnU
   let vas = await res.json()
   let v = vas.data
   
-  let cap = `${htki}  *TO ANIME* ${htka}
+  let cap = `${htki}  *ANIME?* ${htka}
   
-▢ *DONE ANIME?*
+▢ *🙆🏻 NAME* : ${v.filename}
+▢ *🙆🏻 EPISODE* : ${v.episode}
+▢ *🙆🏻 FORM* : ${v.form}
 ${dmenuf}
 `
     
-conn.sendFile(m.chat, v.url, null, cap, m)
+conn.sendFile(m.chat, v.video, null, cap, m)
 //conn.sendFile(m.chat, hasil, '', wm, m)
 	
 }
-handler.help = ['jadianime']
+handler.help = ['cekanime (Foto)']
 handler.tags = ['maker']
-handler.command = /^(jadianime|toanime)$/i
+handler.command = /^(cekanime|carianime)$/i
 handler.limit = true
 
 module.exports = handler

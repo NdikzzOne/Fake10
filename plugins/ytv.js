@@ -59,20 +59,20 @@ await conn.sendFile(m.chat, ahh, 'image/jpg', cap, m);
             console.error(e)
             m.reply(`––––––『 ⎔ 𝙇𝙤𝙖𝙙𝙞𝙣𝙜... 』––––––\n\nMencari Server Fresh`)
             try {
-                const data = await axios.get(`https://api.botcahx.eu.org/api/dowloader/yt?url=${args}&apikey=${apichan}`)
+                const data = await axios.get(`https://ai.xterm.codes/api/downloader/youtube?url=${args}&type=mp4&key=Bell409`)
         if (data.data.status == 403) return m.reply(data.data.message)
-        let mp4 = data.data.result.mp4
+        let mp4 = data.data.data.dlink
         let cap = `${htki}  *PLAY YTDL* ${htka}
   
-▢ *☃️Titel* : ${data.data.result.title}
+▢ *☃️Titel* : ${data.data.data.caption}
 ▢ *☃️ Ext* : mp4
 ▢ *☃️ Channel* : -
-▢ *☃️ Views* : ${data.data.result.view}
+▢ *☃️ fileQuality* : ${data.data.data.fileQuality}
 
 KETIK .ytmp3 JIKA INGIN MENDOWNLOAD AUDIO
 ${dmenuf}
 `
-        conn.sendFile(m.chat, mp4.result, 'yt.mp4', `${cap}`, m)
+        conn.sendFile(m.chat, mp4.data, 'yt.mp4', `${cap}`, m)
             } catch (e) {
                 console.error(e)
                 m.reply('Terjadi kesalahan saat memproses permintaan Anda')

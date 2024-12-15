@@ -4,17 +4,17 @@ let fs = require('fs')
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
-if (!mime) throw 'Kirim/Reply Gambar'
+if (!mime) throw 'Kirim/Reply Gambar dengan caption .remini'
 m.reply(wait)
 let media = await q.download()
 let url = await fileIO(media)
-let res = await fetch(`https://api.neoxr.eu/api/toanime?image=${url}&apikey=dZnUOp`)
+let res = await fetch(`https://api.neoxr.eu/api/tozombie?image=${url}&apikey=dZnUOp`)
   let vas = await res.json()
   let v = vas.data
   
-  let cap = `${htki}  *TO ANIME* ${htka}
+  let cap = `${htki}  *ZOMBIE V1* ${htka}
   
-▢ *DONE ANIME?*
+▢ *DONE ZOMBIE?*
 ${dmenuf}
 `
     
@@ -22,9 +22,9 @@ conn.sendFile(m.chat, v.url, null, cap, m)
 //conn.sendFile(m.chat, hasil, '', wm, m)
 	
 }
-handler.help = ['jadianime']
+handler.help = ['jadizombie']
 handler.tags = ['maker']
-handler.command = /^(jadianime|toanime)$/i
+handler.command = /^(tozombie|jadizombie)$/i
 handler.limit = true
 
 module.exports = handler
