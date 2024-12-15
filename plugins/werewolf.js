@@ -44,7 +44,7 @@ let {
     run_vote,
     run_malam,
     run_pagi
-} = require('../lib/werewolf.js')
+} = require('./lib/werewolf.js')
 
 // [ Thumbnail ]
 let thumb =
