@@ -6,20 +6,19 @@ let handler = async (m, { conn, args, text, isPrems, isOwner, usedPrefix, comman
     let id = `${Math.floor(Math.random() * 5)}`
 	 let chat = global.db.data.chats[m.chat]
 	 m.reply(wait) 
-			let res = await fetch(`https://api.lolhuman.xyz/api/random/quotesnime?apikey=82389ffbed5cd3ab5e3bdd81`)
+			let res = await fetch(`${neNdikz}api/quotesnime?apikey=${neoapi}`)
   let vas = await res.json()
-  let v = vas.result
+  let v = vas.data
   
   let cap = `${htki}  *QUOTES ANIME* ${htka}
   
 ▢ *QUOTES* : ${v.quote}
 ▢ *CHARACTER* : ${v.character}
 ▢ *ANIME* : ${v.anime}
-▢ *EPISODE* : ${v.episode}
 ${dmenuf}
 `
     
-await m.reply(cap)
+conn.sendFile(m.sender, v.image, null, cap, m)
     }
 
 handler.help = ['quotesanime']

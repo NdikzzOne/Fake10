@@ -7,7 +7,7 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
     let chat = global.db.data.chats[m.chat];
     let wait = 'Sedang diunduh...'; // Anda perlu mendefinisikan variabel wait
     m.reply(wait);
-    let res = await fetch(`https://api.neoxr.eu/api/mediafire?url=${args[0]}&apikey=dZnUOp`);
+    let res = await fetch(`${neNdikz}api/mediafire?url=${args[0]}&apikey=${neoapi}`);
     let json = await res.json();
     let v = json.data;
     let cap = `${htki}  *M E D I A F I R E* ${htka}

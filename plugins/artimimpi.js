@@ -6,9 +6,12 @@ var handler = async (m, {
  }) => {
 if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa presiden Indonesia? `
 //await m.reply(wait)
-  var apii = await fetch(`https://api.lolhuman.xyz/api/primbon/artimimpi?apikey=82389ffbed5cd3ab5e3bdd81&query=${text}`)
-  var js = await apii.json()
-  await m.reply(js.result)
+  var apii = await fetch(`${neNdikz}api/artimimpi?q=${text}&apikey=${neoapi}`)
+  let vas = await apii.json()
+  let v = vas.data
+  
+  let cap = `${v.result}`
+await m.reply(cap)
 }      
 handler.command = handler.help = ['artimimpi'];
 handler.tags = ['fun'];

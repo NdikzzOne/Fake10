@@ -4,7 +4,7 @@ let fetch = require('node-fetch')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 let id = `${Math.floor(Math.random() * 5)}`
     m.reply('Cewek Nya Ndikz Akan Di Kirim Di priv Chat')
-let res = await fetch(`https://dummyjson.com/c/cffe-6a4f-478e-97e7`)
+let res = await fetch(`${CewekNdikz}`)
 let wes = await res.json()
                 let was = wes.result
 let cita = wes.result[Math.floor(Math.random() * was.length)]

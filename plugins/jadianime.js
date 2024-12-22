@@ -8,17 +8,8 @@ if (!mime) throw 'Kirim/Reply Gambar'
 m.reply(wait)
 let media = await q.download()
 let url = await fileIO(media)
-let res = await fetch(`https://api.neoxr.eu/api/toanime?image=${url}&apikey=dZnUOp`)
-  let vas = await res.json()
-  let v = vas.data
-  
-  let cap = `${htki}  *TO ANIME* ${htka}
-  
-▢ *DONE ANIME?*
-${dmenuf}
-`
-    
-conn.sendFile(m.chat, v.url, null, cap, m)
+let hasil = await (await fetch(`${skyNdikz}api/toanime?apikey=${skyapi}&url=${url}`)).buffer()
+await conn.sendFile(m.chat, hasil, '', wm, m)
 //conn.sendFile(m.chat, hasil, '', wm, m)
 	
 }

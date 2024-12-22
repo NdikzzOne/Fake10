@@ -15,7 +15,7 @@ handler.before = async (m) => {
         if (commands.includes(m.text.toLowerCase())) return
         if (/^.*false|disable|(turn)?off|0/i.test(m.text)) return
         if (!m.text) return
-        let api = await fetch(`https://api.lolhuman.xyz/api/simi?apikey=82389ffbed5cd3ab5e3bdd81&text=${encodeURIComponent(m.text)}&badword=true`)
+        let api = await fetch(`https://api.lolhuman.xyz/api/simi?apikey=${apichan}&text=${encodeURIComponent(m.text)}&badword=true`)
         let res = await api.json()
         await m.reply(`${res.result}`)
         return true

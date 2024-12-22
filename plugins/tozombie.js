@@ -8,7 +8,7 @@ if (!mime) throw 'Kirim/Reply Gambar dengan caption .remini'
 m.reply(wait)
 let media = await q.download()
 let url = await fileIO(media)
-let res = await fetch(`https://api.neoxr.eu/api/tozombie?image=${url}&apikey=dZnUOp`)
+let res = await fetch(`${neNdikz}api/tozombie?image=${url}&apikey=${neoapi}`)
   let vas = await res.json()
   let v = vas.data
   

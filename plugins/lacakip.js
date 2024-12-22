@@ -7,7 +7,7 @@ if (!text) throw `Contoh: ${usedPrefix + command} 0.0.0.0`
     let id = `${Math.floor(Math.random() * 5)}`
 	 let chat = global.db.data.chats[m.chat]
 	 m.reply(wait) 
-			let res = await fetch(`https://api.lolhuman.xyz/api/ipaddress/${text}?apikey=82389ffbed5cd3ab5e3bdd81`)
+			let res = await fetch(`https://api.lolhuman.xyz/api/ipaddress/${text}?apikey=${apichan}`)
   let vas = await res.json()
   let v = vas.result
   

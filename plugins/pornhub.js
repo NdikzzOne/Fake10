@@ -3,31 +3,27 @@ let fetch = require('node-fetch')
 var { youtubedl, youtubedlv2, youtubedlv3 } = require('@bochilteam/scraper')
 let limit = 350 
 let handler = async (m, { conn, args, text, isPrems, isOwner, usedPrefix, command }) => {
+if (!text) throw `Contoh .pornhub teks1|teks2`
 let [teksBottom,teksTop] = text.split('|')
-if (!text) throw `Contoh: ${usedPrefix + command} NAMA KAMU|NAMA PASANGAN`
     let id = `${Math.floor(Math.random() * 5)}`
 	 let chat = global.db.data.chats[m.chat]
 	 m.reply(wait) 
-			let res = await fetch(`${neNdikz}api/jodoh?name1=${teksBottom}&name2=${teksTop}&apikey=${neoapi}`)
+			let res = await fetch(`${neNdikz}api/pornhub?text1=${teksBottom}&text2=${teksTop}&apikey=${neoapi}`)
   let vas = await res.json()
   let v = vas.data
   
-  let cap = `${htki}  *JODOH* ${htka}
- 
-▢ *💫 NAMA ANDA* : ${v.nama_anda}
-▢ *💫 NAMA PASANGAN* : ${v.nama_pasangan}
-▢ *💫 POSITIF* : ${v.positif}
-▢ *💫 NEGATIF* : ${v.negatif}
-▢ *💫 INFO* : ${v.info}
+  let cap = `${htki} PORNHUB ${htka}
+  
+▢DONE PORNHUB?
 ${dmenuf}
 `
     
-await m.reply(cap)
-}
-
-handler.help = ['tebakjodoh']
-handler.tags = ['fun']
+    conn.sendFile(m.chat, v.url, null, cap, m)
+    }
+handler.help = ['pornhub (text1|text2']
+handler.tags = ['maker']
+handler.command = /^(pornhub)$/i
 handler.premium = false
-handler.command = /^(tebakjodoh|jodoh)$/i
-
+handler.register = false
+handler.limit = 20
 module.exports = handler

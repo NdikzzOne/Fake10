@@ -4,11 +4,11 @@ let fs = require('fs')
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
-if (!mime) throw 'Kirim/Reply Gambar dengan caption .remini'
+if (!mime) throw 'Kirim/Reply Gambar dengan caption .cekumur'
 m.reply(wait)
 let media = await q.download()
 let url = await fileIO(media)
-let res = await fetch(`https://api.neoxr.eu/api/age?image=${url}&apikey=dZnUOp`)
+let res = await fetch(`${neNdikz}api/age?image=${url}&apikey=${neoapi}`)
   let vas = await res.json()
   let v = vas.data
   
@@ -25,7 +25,7 @@ await m.reply(cap)
 }
 handler.help = ['cekumur (foto)']
 handler.tags = ['maker']
-handler.command = /^(cekumur)$/i
+handler.command = /^(cekumur|tebakumur)$/i
 handler.limit = true
 
 module.exports = handler

@@ -5,7 +5,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   //  await conn.sendFile(m.chat, thumb, 'galau.jpg', `${pickRandom(global.galau)}`, m)
     global.fkontak = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': wm, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${wm},;;;\nFN:${wm},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabell:Ponsel\nEND:VCARD`, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg'), thumbnail: fs.readFileSync('./thumbnail.jpg'),sendEphemeral: true}}}
     let audio = './mp3/senja.mp3'
-    let res = await fetch(`https://api.neoxr.eu/api/senja?apikey=dZnUOp`)
+    let res = await fetch(`${neNdikz}api/senja?apikey=${neoapi}`)
   let vas = await res.json()
   let v = vas.data
   

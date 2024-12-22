@@ -7,7 +7,7 @@ if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa presiden Indonesia? `
     let id = `${Math.floor(Math.random() * 5)}`
 	 let chat = global.db.data.chats[m.chat]
 	 m.reply(wait) 
-			let res = await fetch(`https://api.neoxr.eu/api/gpt4-session?q=${text}&session=1727468410446638&apikey=dZnUOp`)
+			let res = await fetch(`${neNdikz}api/gpt4-session?q=${text}&session=1727468410446638&apikey=${neoapi}`)
   let vas = await res.json()
   let v = vas.data
   

@@ -8,7 +8,7 @@ if (!mime) throw 'Kirim/Reply Gambar dengan caption .removebg'
 m.reply(wait)
 let media = await q.download()
 let url = await uploadImage(media)
-let hasil = await (await fetch(`https://api.neoxr.eu/api/nobg?image=${url}&apikey=dZnUOp`)).buffer()
+let hasil = await (await fetch(`${neNdikz}api/nobg?image=${url}&apikey=${neoapi}`)).buffer()
 await conn.sendFile(m.chat, hasil, '', wm, m)
 	
 }

@@ -72,7 +72,7 @@ ${cmenuf}
         }, { quoted: m });
 
         // Mengunduh audio menggunakan btch-downloader atau ytdlv2
-       let rasat = await(await fetch(`https://api.neoxr.eu/api/youtube?url=${videoUrl}&type=audio&quality=128kbps&apikey=dZnUOp`)).json()
+       let rasat = await(await fetch(`${neNdikz}api/youtube?url=${videoUrl}&type=audio&quality=128kbps&apikey=${neoapi}`)).json()
 
         // Membuat dokumen audio
         let doc = { 
@@ -89,7 +89,7 @@ ${cmenuf}
                     title: title,
                     body: namabot,
                     sourceUrl: videoUrl,
-                    thumbnail: await (await conn.getFile(rasat.data.thumb)).data                                                                     
+                    thumbnail: await (await conn.getFile(thumbnail)).data                                                                     
                 }
             }
         };

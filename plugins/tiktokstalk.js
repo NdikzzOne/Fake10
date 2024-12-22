@@ -7,7 +7,7 @@ if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Hutaoo Bermain   piano `
     let id = `${Math.floor(Math.random() * 5)}`
 	 let chat = global.db.data.chats[m.chat]
 	 m.reply(wait) 
-			let res = await fetch(`https://api.neoxr.eu/api/ttstalk?username=${text}&apikey=dZnUOp`)
+			let res = await fetch(`${neNdikz}api/ttstalk?username=${text}&apikey=${neoapi}`)
   let vas = await res.json()
   let v = vas.data
   

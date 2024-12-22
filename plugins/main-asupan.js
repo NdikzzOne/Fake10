@@ -6,23 +6,22 @@ let handler = async (m, { conn, args, text, isPrems, isOwner, usedPrefix, comman
     let id = `${Math.floor(Math.random() * 5)}`
 	 let chat = global.db.data.chats[m.chat]
 	 m.reply(wait) 
-			let res = await fetch(`https://api.lolhuman.xyz/api/cerpen?apikey=${apichan}`)
+			let res = await fetch(`${neNdikz}api/asupan?username=cavend1sh__&apikey=${neoapi}`)
   let vas = await res.json()
-  let v = vas.result
+  let v = vas.data
   
-  let cap = `${htki}  *CERPEN* ${htka}
+  let cap = `${htki} ASUPAN ${htka}
   
-▢ *CREATOR* : ${v.creator}
-▢ *JUDUL* : ${v.title}
-▢ *CERPEN* : ${v.cerpen}
+▢ *🙆🏻 Caption* : ${v.caption}
 ${dmenuf}
 `
     
-await m.reply(cap)
+    conn.sendFile(m.chat, v.video, null, cap, m)
     }
-
-handler.help = ['cerpen']
-handler.tags = ['interner']
-handler.command = /^(cerpen|ceritapendee|ceripen)$/i
-handler.limit = true
+handler.help = ['asupandouyin']
+handler.tags = ['asupan']
+handler.command = /^(asupandouyin)$/i
+handler.premium = false
+handler.register = false
+handler.limit = 20
 module.exports = handler
