@@ -49,9 +49,7 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 ┊☃︎ *Channel:* ${channel}
 ┊☃︎ *Upload:* ${new Date(publishedAt).toLocaleDateString()}
 ───────────
-┊☃︎ Kirim .tomp3 untuk mengubah video menjadi mp3
-┊☃︎ Kirim .tovn untuk mengubah video menjadi VN
-───────────
+┊☃︎ Download....
 ┊☃︎ By @${namaowner}
 ${cmenuf}
         `;
