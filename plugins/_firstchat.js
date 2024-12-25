@@ -1,7 +1,7 @@
-let moment = require('moment-timezone')
+/**let moment = require('moment-timezone')
 let handler = m => m
 
-handler.before = async function (m) {
+*//handler.before = async function (m) {
 
     if (m.chat.endsWith('broadcast')) return
     if (m.fromMe) return
@@ -20,8 +20,8 @@ ${banned ? `kamu *terbanned* kak 😕\nHubungi: wa.me/${owner[0]}` : 'Ada Yang B
     user.pc = new Date * 1
 }
 
-module.exports = handler
-function ucapan() {
+/**module.exports = handler
+*//function ucapan() {
         const hour_now = moment.tz('Asia/Jakarta').format('HH')
         var ucapanWaktu = 'Pagi kak'
         if (hour_now >= '03' && hour_now <= '10') {
