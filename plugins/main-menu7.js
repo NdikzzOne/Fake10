@@ -82,6 +82,7 @@ ${htjava}  ◈ ━━━━━ *INFO BOTZ* ━━━━━ ◈
 ┇ ⫹⫺ .bypass-ouo  (Ⓛ)
 ┇ ⫹⫺ .alay  (Ⓛ)
 ┇ ⫹⫺ .ceritahoror (Ⓟ)
+┇ ⫹⫺ .ceksifat
 ┇ ⫹⫺ .dare  (Ⓛ)
 ┇ ⫹⫺ .facedetect  (Ⓛ)
 ┇ ⫹⫺ .halah <teks>  (Ⓛ)

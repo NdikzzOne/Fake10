@@ -275,6 +275,13 @@ let msg = generateWAMessageFromContent(m.chat, {
       }
       chat.viewonce = isEnable
       break
+      case 'ngetik':
+       if (!isROwner) {
+          global.dfail('rowner', m, conn)
+          throw false
+        }
+        chat.ngetik = isEnable
+        break
     case 'autolevelup':
       isUser = true
       user.autolevelup = isEnable
