@@ -988,11 +988,11 @@ module.exports = {
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', await this.getName(user))
 
 							let wel = await fetch(`https://api.alyachan.dev/api/welcome?picture=${pp}&background=https%3A%2F%2Fi.ibb.co%2F0tZvYK8%2Fimage.jpg&desc=Welcome ${name}&apikey=ZGRzT9`)
-							let lea = await fetch(`https://api.alyachan.dev/api/leave?picture=${pp}&background=https%3A%2F%2Fi.ibb.co%2F0tZvYK8%2Fimage.jpg&desc=bayy ${name}&apikey=08mSWt`)
+							let lea = await fetch(`https://api.alyachan.dev/api/leave?picture=${pp}&background=https%3A%2F%2Fi.ibb.co%2F0tZvYK8%2Fimage.jpg&desc=to+my+group&apikey=08mSWt`)
 							let vas = await wel.json()
   let v = vas.data
   let vs = await lea.json()
-  let i = vas.data
+  let i = vs.data
                             this.sendFile(id, action === 'add' ? v.url : i.url, 'pp.jpg', text, null, false, { mentions: [user] })
                             /*this.sendMessage(id, {
 						  text: text,
