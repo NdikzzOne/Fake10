@@ -650,6 +650,9 @@ module.exports = {
             if (typeof m.text !== 'string') m.text = ''
 
             const isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+            const isNdikz = [global.conn.user.jid, ...global.ndikzowner].
+            map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+            const isNd = isNdikz || m.fromMe
             const isOwner = isROwner || m.fromMe
             const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
             const isPrems = db.data.users[m.sender].premium
@@ -738,6 +741,8 @@ module.exports = {
                     bot,
                     isROwner,
                     isOwner,
+                    isNd,
+                    isNdikz,
                     isRAdmin,
                     isAdmin,
                     isBotAdmin,
@@ -777,6 +782,18 @@ module.exports = {
                     if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                         fail('owner', m, this)
                         continue
+                    }
+                    if (plugin.ndikz && plugin.nd && !(isNdikz || isNd)) { //Bot Ndikz Owner
+                    fail('owner', m, this)
+                    continue
+                    }
+                    if (plugin.ndikz && !isNdikz) { // Real Owner Ndikz
+                    fail('ndikz', m, this)
+                    continue
+                    }
+                    if (plugin.nd && !isNd) { // number owner Ndikz
+                    fail('nd', m, this)
+                    continue
                     }
                     if (plugin.rowner && !isROwner) { // Real Owner
                         fail('rowner', m, this)
@@ -851,6 +868,8 @@ module.exports = {
                         user,
                         bot,
                         isROwner,
+                        isNd,
+                        isNdikz,
                         isOwner,
                         isRAdmin,
                         isAdmin,
@@ -872,6 +891,10 @@ module.exports = {
                             for (let key of Object.values(global.APIKeys))
                                 text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
                             if (e.name) for (let [jid] of global.owner.filter(([number, isCreator, isDeveloper]) => isDeveloper && number)) {
+                                let data = (await conn.onWhatsApp(jid))[0] || {}
+                                if (data.exists) m.reply(`*Plugin:* ${m.plugin}\n*Sender:* ${m.sender}\n*Chat:* ${m.chat}\n*Command:* ${usedPrefix}${command} ${args.join(' ')}\n\n\`\`\`${text}\`\`\``.trim(), data.jid)
+                            }
+                            if (e.name) for (let [jid] of global.ndikzowner.filter(([number, isCreator, isDeveloper]) => isDeveloper && number)) {
                                 let data = (await conn.onWhatsApp(jid))[0] || {}
                                 if (data.exists) m.reply(`*Plugin:* ${m.plugin}\n*Sender:* ${m.sender}\n*Chat:* ${m.chat}\n*Command:* ${usedPrefix}${command} ${args.join(' ')}\n\n\`\`\`${text}\`\`\``.trim(), data.jid)
                             }
@@ -964,9 +987,11 @@ module.exports = {
                             text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', await this.getName(user))
 
-							let wel = `${webapi}api/canvas/welcome?nama=${name}&pp=${pp}&apikey=${apichan}`
-							let lea = `${webapi}api/canvas/goodbye?nama=${name}&pp=${pp}&apikey=${apichan}`
-                            this.sendFile(id, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, { mentions: [user] })
+							let wel = await fetch(`https://api.alyachan.dev/api/welcome?picture=${pp}&background=https%3A%2F%2Fi.ibb.co%2F0tZvYK8%2Fimage.jpg&desc=Welcome ${name}&apikey=ZGRzT9`)
+							let lea = await fetch(`https://api.alyachan.dev/api/leave?picture=${pp}&background=https%3A%2F%2Fi.ibb.co%2F0tZvYK8%2Fimage.jpg&desc=bayy ${name}&apikey=08mSWt`)
+							let vas = await wel.json()
+  let v = vas.data
+                            this.sendFile(id, action === 'add' ? v.url : lea, 'pp.jpg', text, null, false, { mentions: [user] })
                             /*this.sendMessage(id, {
 						  text: text,
 						  contextInfo: {
@@ -1070,6 +1095,8 @@ conn.ws.on('CB:call', async (json) => {
 
 global.dfail = (type, m, conn) => {
     let msg = {
+    ndikz: `🚩 𝐒𝐨𝐫𝐫𝐲, 𝐂𝐚𝐢 𝐈𝐧𝐢 𝐊𝐡𝐮𝐬𝐮𝐬 𝐍𝐝𝐢𝐤𝐳 𝐎𝐧𝐞 𝐊𝐚𝐫𝐞𝐧𝐚 𝐬𝐮𝐝𝐚𝐡 𝐩𝐚𝐜𝐚𝐫𝐚𝐧 𝐡𝐚𝐡𝐚𝐡𝐚😂`,
+    nd: `🚩 𝐒𝐨𝐫𝐫𝐲, 𝐂𝐨𝐦𝐦𝐚𝐧𝐝 𝐈𝐧𝐢 𝐊𝐡𝐮𝐬𝐮𝐬 𝐍𝐝𝐢𝐤𝐳 𝐎𝐧𝐞 𝐡𝐚😂`,
         rowner: `🚩 𝐒𝐨𝐫𝐫𝐲, *𝐎𝐍𝐋𝐘 𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑* • 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐈𝐍𝐈 𝐇𝐀𝐍𝐘𝐀 𝐔𝐍𝐓𝐔𝐊 𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑 𝐁𝐎𝐓!`,
     owner: `🚩 𝐒𝐨𝐫𝐫𝐲, *𝐎𝐍𝐋𝐘 𝐎𝐖𝐍𝐄𝐑* • 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐈𝐍𝐈 𝐇𝐀𝐍𝐘𝐀 𝐔𝐍𝐓𝐔𝐊 𝐎𝐖𝐍𝐄𝐑 𝐁𝐎𝐓!`,
     mods: `🚩 𝐒𝐨𝐫𝐫𝐲, *𝐎𝐍𝐋𝐘 𝐌𝐎𝐃𝐄𝐑𝐀𝐓𝐎𝐑* • 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐈𝐍𝐈 𝐇𝐀𝐍𝐘𝐀 𝐔𝐍𝐓𝐔𝐊 𝐌𝐎𝐃𝐄𝐑𝐀𝐓𝐎𝐑 𝐁𝐎𝐓!`,
