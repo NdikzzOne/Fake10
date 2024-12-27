@@ -58,7 +58,7 @@ const defaultMenu = {
 ⌬〡 ᴛʏᴘᴇ : *NodeJS*
 ⌬〡 ᴘʟᴀᴛғᴏʀᴍ : *%platform*
 ⌬〡 ᴠᴇʀsɪᴏɴ : *%version*
-⌬〡 ʜᴏᴍᴇᴘᴀɢᴇ : *NdikzOne*
+⌬〡 ʜᴏᴍᴇᴘᴀɢᴇ : *${namabot}*
 
 *pesan* jangan lupa sholat
 ─────────────
