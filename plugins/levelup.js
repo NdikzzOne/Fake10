@@ -6,7 +6,7 @@ let handler = async m => {
         let ppUrl = await convertToTelegraph(pp)
           let user = global.db.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(user.level, global.multiplier)
-    let res = await fetch(`${neNdikz}api/leveling?rank=node&level=10&picture=${ppUrl}&currentXp=${user.exp - min}&requiredXp=${max - user.exp}&name=${user.name}&apikey=${neoapi}`)
+    let res = await fetch(`${neNdikz}api/leveling?rank=node&level=${user.level}&picture=${ppUrl}&currentXp=${user.exp - min}&requiredXp=${max - user.exp}&name=${user.name}&apikey=${neoapi}`)
     let vas = await res.json()
   let v = vas.data
     let capt = `┌───⊷ LEVEL
