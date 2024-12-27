@@ -991,9 +991,9 @@ module.exports = {
 							let lea = await fetch(`https://api.alyachan.dev/api/leave?picture=${pp}&background=https%3A%2F%2Fi.ibb.co%2F0tZvYK8%2Fimage.jpg&desc=bayy ${name}&apikey=08mSWt`)
 							let vas = await wel.json()
   let v = vas.data
-  let jsp = await lea.json()
-  let nt jsp.data
-                            this.sendFile(id, action === 'add' ? v.url : nt.url, 'pp.jpg', text, null, false, { mentions: [user] })
+  let vs = await lea.json()
+  let i = vas.data
+                            this.sendFile(id, action === 'add' ? v.url : i.url, 'pp.jpg', text, null, false, { mentions: [user] })
                             /*this.sendMessage(id, {
 						  text: text,
 						  contextInfo: {
