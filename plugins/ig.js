@@ -16,7 +16,7 @@ let handler = async (m, { conn, args, text, isPrems, isOwner, usedPrefix, comman
     
     conn.sendFile(m.chat, vvas.url, null, wm, m)
     } catch (e) {
-        let res = await fetch(`${webapi}api/downloader/instagram2?url=${args[0]}&apikey=${apichan}`)
+        let res = await fetch(`${alyaNdikz}api/ig?url=${args[0]}&apikey=${alyaapi}`)
   let vas = await res.json()
   let vvas = vas.data[0]
     
